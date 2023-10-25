@@ -13,8 +13,4 @@ router.get('/fruits', async (req, res) => {
   })
 
 
-
-
-
-
 module.exports = router;

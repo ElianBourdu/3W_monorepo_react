@@ -3,6 +3,7 @@ const router = express.Router();
 const Agriculteur = require('../model/Agriculteur');
 
 
+
 router.get('/agriculteurs', async (req, res) => {
     try {
        const agriculteurs = await Agriculteur.find();
@@ -22,20 +23,23 @@ router.get('/agriculteurs', async (req, res) => {
   
     router.post('/agriculteurs', async (req, res) => {
       try {
-         if (!req.body.firstName || !req.body.lastName || !req.body.localisation) {
-            return res.status(400).send('Tous les champs sont requis.');
+          if (!req.body.firstName || !req.body.lastName || !req.body.localisation || !req.body.email || !req.body.password) {
+              return res.status(400).send('Tous les champs sont requis.');
           }
           const agri = new Agriculteur({
               firstName: req.body.firstName,
               lastName: req.body.lastName,
-              localisation: req.body.localisation
+              localisation: req.body.localisation,
+              email: req.body.email,
+              password:req.body.password
           });
+  
           await agri.save();
           res.status(201).send(agri);
-            } catch (error) {
+          } catch (error) {
               res.status(500).send("Une erreur s'est produite lors de la création de l'agriculteur.");
-            }
-   });
+          }
+         });
   
     router.put('/agriculteurs/:id', async (req, res) => {
       try {
