@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Source+Sans+3:wght@300;400&display=swap');
+body{
+    width: 80%; 
+    margin: 0 auto; 
+    padding: 20px; 
+}
+button{
+    width: 103px;
+    height: 36px;
+    margin-left: 30px;
+    margin-right: 50px;
+}
+.button--secondary{
+    font-family: 'League Gothic', sans-serif;
+    color: white;
+    background-color: black;
+    font-size: 21px;
+    border-radius: 15px;
+}
+
+.button--primary {
+    margin-right: 10px;
+    font-family: 'League Gothic', sans-serif;
+    color: white;
+    background-color: #8277FF;
+    font-size: 21px;
+    border-radius: 15px;
+    border-color: #8277FF;
+}
+.button--primary:hover{
+    color: white;
+    background-color: #16d6ad;
+    border-color: #16d6ad;
+}
+.button--secondary:hover {
+    color: white;
+    background-color: #16d6ad;
+    border-color: #16d6ad;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+}
