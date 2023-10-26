@@ -46,26 +46,35 @@ router.get('/agriculteurs', async (req, res) => {
               res.status(500).send("Une erreur s'est produite lors de la création de l'agriculteur.");
           }
          });
-         router.post('/agriculteurs/:id/ajouter-fruits', async (req, res) => {
+         
+         router.post('/agriculteurs/:id/fruits', async (req, res) => {
           const agriId = req.params.id;
           const { fruits } = req.body;
-      
+        
           try {
-              const agri = await Agriculteur.findById(agriId);
-              if (!agri) {
-                  return res.status(404).send("Agriculteur non trouvé.");
-              }
-              const fruitsExistant = await Fruit.find({ name: { $in: fruits } });
-              const fruitsValides = fruitsExistant.map(fruit => fruit.name);
-              agri.fruits = fruitsValides;
+            const agri = await Agriculteur.findById(agriId);
+            if (!agri) {
+              return res.status(404).send("Agriculteur non trouvé.");
+            }
+        
+            let existingFruit = await Fruit.findOne({ name: fruits });
+        
+            if (!existingFruit) {
+              existingFruit = new Fruit({ name: fruits });
+              await existingFruit.save();
+            }
+        
+            if (!agri.fruits.includes(existingFruit.name)) {
+              agri.fruits.push(existingFruit.name);
               await agri.save();
-      
-              res.status(200).send(agri);
+            }
+        
+            res.status(200).send(agri);
           } catch (error) {
-              console.error(error);
-              res.status(500).send("Une erreur s'est produite lors de la mise à jour du profil de l'agriculteur.");
+            console.error(error);
+            res.status(500).send("Une erreur s'est produite lors de la mise à jour du profil de l'agriculteur.");
           }
-      });
+        });
   
 
     router.put('/agriculteurs/:id', async (req, res) => {

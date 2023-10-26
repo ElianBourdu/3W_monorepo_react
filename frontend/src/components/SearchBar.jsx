@@ -41,7 +41,7 @@ function SearchBar() {
       <select value={selectedCategory} onChange={handleCategoryChange}>
         <option value="" hidden>Catégorie</option>
         {fruits.map((fruit) => (
-          <option value={fruit.name} hidden>{fruit.name}</option>
+          <option value={fruit.name}>{fruit.name}</option>
         ))}
       </select>
 

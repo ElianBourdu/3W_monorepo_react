@@ -16,15 +16,13 @@ router.post('/signups', async (req, res) => {
         const { error } = schema.validate(req.body);
 
         if (error) {
-            return res.status(400).send(
-                error.details[0].message
-                );
+            return res.status(400).json({ error: error.details[0].message });
         }
 
-        const repeatAgriculteur = await Agriculteur.find({ email: req.body.email });
+        const existingAgriculteur = await Agriculteur.findOne({ email: req.body.email });
 
-        if (repeatAgriculteur) {
-            return res.status(400).send("Cet email est déjà utilisé par un utilisateur ou un agriculteur.");
+        if (existingAgriculteur) {
+            return res.status(400).json({ error: "Cet email est déjà utilisé par un utilisateur ou un agriculteur." });
         }
 
         const agri = new Agriculteur({
@@ -36,9 +34,10 @@ router.post('/signups', async (req, res) => {
         });
 
         await agri.save();
-        res.status(201).send("Inscription réussie");
+        res.status(201).json({ message: "Inscription réussie" });
     } catch (error) {
-        res.status(500).send("Une erreur s'est produite lors de l'inscription.");
+        console.error(error);
+        res.status(500).json({ error: "Une erreur s'est produite lors de l'inscription." });
     }
 });
 
