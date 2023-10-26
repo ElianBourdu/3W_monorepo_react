@@ -25,8 +25,30 @@ function SearchBar() {
     setSelectedCategory(event.target.value);
   };
 
-  const handleSearch = () => {
-    //@todo request back
+  const handleSearch = (event) => {
+    event.preventDefault();
+
+    fetch('http://localhost:8000/search?' + new URLSearchParams({
+      localisation: searchInput,
+      fruits: selectedCategory,
+    }), {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Requête en échec');
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error('Erreur de requête :', error);
+      });
   };
 
   return (
@@ -41,7 +63,7 @@ function SearchBar() {
       <select value={selectedCategory} onChange={handleCategoryChange}>
         <option value="" hidden>Catégorie</option>
         {fruits.map((fruit) => (
-          <option value={fruit.name} hidden>{fruit.name}</option>
+          <option value={fruit.name}>{fruit.name}</option>
         ))}
       </select>
 
