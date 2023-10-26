@@ -1,9 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { GET_FRUITS } from '../actions/fruitsActions';
 import Button from "./Button";
 
 function SearchBar() {
   const [searchInput, setSearchInput] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('catégorie');
+  const dispatch = useDispatch();
+  const { fruits, error } = useSelector((state) => state.fruits);
+
+  useEffect(() => {
+    dispatch(GET_FRUITS());
+  }, [dispatch]);
+
+  if (error) {
+    return <p>Une erreur s'est produite lors de la récupération des fruits: {error}</p>;
+  }
 
   const handleLocalisationChange = (event) => {
     setSearchInput(event.target.value);
@@ -18,23 +30,23 @@ function SearchBar() {
   };
 
   return (
-    <div className="searchBar">
-      <select value={searchInput} onChange={handleLocalisationChange}>
-        <option value="" hidden>localisation</option>
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
-      </select>
+    <form className="searchBar">
+      <input
+        value={searchInput}
+        onChange={handleLocalisationChange}
+        type="text"
+        placeholder="localisation"
+      />
 
       <select value={selectedCategory} onChange={handleCategoryChange}>
         <option value="" hidden>Catégorie</option>
-        <option value="option1">Option 1</option>
-        <option value="option2">Option 2</option>
-        <option value="option3">Option 3</option>
+        {fruits.map((fruit) => (
+          <option value={fruit.name} hidden>{fruit.name}</option>
+        ))}
       </select>
 
       <Button variant="primary" onClick={handleSearch}>Rechercher</Button>
-    </div>
+    </form>
   );
 }
 

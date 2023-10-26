@@ -7,19 +7,13 @@ const Fruit = require('./router/fruit');
 const AgriRouter = require('./router/agriculteur');
 const SignupRouter = require('./router/signup');
 const SearchRouter = require('./router/search');
+const cors = require('cors')
 
-
+app.use(cors())
 app.use(express.json());
-
 app.use('',Fruit);
 app.use('', AgriRouter);
 app.use('',SignupRouter);
 app.use('', SearchRouter);
 
-
-
-
-
-
 app.listen(port, () => console.log('Listenning on port 8000'));
-
