@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Source+Sans+3:wght@300;400&display=swap');
+body{
+    margin: 0 auto;
+}
+button{
+    width: 103px;
+    height: 36px;
+    margin-left: 30px;
+    margin-right: 50px;
+    border: none;
+}
+
+button:hover {
+    cursor: pointer;
+}
+
+.button--secondary{
+    font-family: 'League Gothic', sans-serif;
+    color: white;
+    background-color: black;
+    font-size: 21px;
+    border-radius: 15px;
+}
+
+.button--primary {
+    margin-right: 10px;
+    font-family: 'League Gothic', sans-serif;
+    color: white;
+    background-color: #8277FF;
+    font-size: 21px;
+    border-radius: 15px;
+    border-color: #8277FF;
+}
+.button--primary:hover{
+    color: white;
+    background-color: #16d6ad;
+    border-color: #16d6ad;
+}
+.button--secondary:hover {
+    color: white;
+    background-color: #16d6ad;
+    border-color: #16d6ad;
+}
+
+.navbar{
+    display: flex;
+    justify-content: space-between;
+}
+
+.header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-image: url('../assets/images/header.png');
+    background-size: cover;
+    background-color: rgba(255, 255, 255, 0.5);;
+    min-height: 400px;
+}
+
+.header__title {
+    color: white;
+    font-size: 54px;
+}
+
+.header__title span {
+    color: #F87B6A;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    font-size: 20px;
+    display: block;
+}
+
+.searchBar {
+    background-color: white;
+    border-radius: 36px;
+    padding: 10px 10px 10px 25px;;
+    display: flex;
+    gap: 20px;
+    border: 1px solid black;
+}
+
+.searchBar input, .searchBar select {
+    border: none;
+}
