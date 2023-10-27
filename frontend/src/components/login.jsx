@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-
+import Logo from '../assets/images/log.png';
 import { useNavigate} from 'react-router-dom'
 import axios from 'axios';
 
@@ -43,8 +43,8 @@ const Login = () => {
 };
 
   return (
-    <div>
-      <h1>Connexion</h1>
+    <div><h1>Welcome back</h1>
+    <div className='section-login'>
       {isAuthenticated ? (
         <div className="success">Connexion réussie !</div>
       ) : (
@@ -61,8 +61,10 @@ const Login = () => {
             <input type="password" value={password} onChange={handlePasswordChange} />
           </label>
         </div>
-        <button type="submit">Se connecter</button>
+        <button className="btn"type="submit">Se connecter</button>
       </form>
+      <img className="login_logo" src={Logo} alt="logo agr" />
+    </div>
     </div>
   );
 };
