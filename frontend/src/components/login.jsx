@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect } from 'react-router-dom';
+import { redirect } from 'react-router-dom';
 import axios from 'axios';
 
 const Login = () => {
@@ -38,7 +38,7 @@ const Login = () => {
       });
   };
   if (isAuthenticated) {
-    return <Redirect to="user/:id"/>;
+    return redirect ("user/:id");
   }
 
   return (

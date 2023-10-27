@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { setSearchResult } from '../actions/searchActions';
 import { GET_FRUITS } from '../actions/fruitsActions';
 import Button from "./Button";
 
@@ -8,6 +9,8 @@ function SearchBar() {
   const [selectedCategory, setSelectedCategory] = useState('catégorie');
   const dispatch = useDispatch();
   const { fruits, error } = useSelector((state) => state.fruits);
+  const searchResult = useSelector((state) => state.search.searchResult);
+
 
   useEffect(() => {
     dispatch(GET_FRUITS());
@@ -39,12 +42,12 @@ function SearchBar() {
     })
       .then((response) => {
         if (!response.ok) {
-          throw new Error('Requête en échec');
+          throw new Error('échec de la requete');
         }
         return response.json();
       })
       .then((data) => {
-        console.log(data);
+        dispatch(setSearchResult(data));
       })
       .catch((error) => {
         console.error('Erreur de requête :', error);
@@ -63,7 +66,7 @@ function SearchBar() {
       <select value={selectedCategory} onChange={handleCategoryChange}>
         <option value="" hidden>Catégorie</option>
         {fruits.map((fruit) => (
-          <option value={fruit.name}>{fruit.name}</option>
+          <option key={fruit.name} value={fruit.name}>{fruit.name}</option>
         ))}
       </select>
 

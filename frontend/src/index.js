@@ -1,5 +1,5 @@
 import React from 'react';
-import * as ReactDOM from "react-dom";
+import * as ReactDOM from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
@@ -16,9 +16,11 @@ const router = createBrowserRouter([
     path:'/',
     element: <Home />,
     children: [
-     { path:'user/:id',
-    element: <User />}
-    ]
+      {
+        path:'user/:id',
+        element: <User />
+      },
+    ],
   },
 ]);
 
