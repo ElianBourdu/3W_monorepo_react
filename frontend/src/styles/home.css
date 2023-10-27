@@ -1,13 +1,68 @@
 @import url('https://fonts.googleapis.com/css2?family=League+Gothic&family=Source+Sans+3:wght@300;400&display=swap');
+/* http://meyerweb.com/eric/tools/css/reset/
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+body {
+    line-height: 1;
+}
+ol, ul {
+    list-style: none;
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
 body{
     margin: 0 auto;
 }
+
+.container {
+    padding: 5vw;
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
 button{
-    width: 103px;
-    height: 36px;
-    margin-left: 30px;
-    margin-right: 50px;
     border: none;
+    padding: 12px;
+    border-radius: 25px;
 }
 
 button:hover {
@@ -18,17 +73,14 @@ button:hover {
     font-family: 'League Gothic', sans-serif;
     color: white;
     background-color: black;
-    font-size: 21px;
-    border-radius: 15px;
+    font-size: 20px;
 }
 
 .button--primary {
-    margin-right: 10px;
     font-family: 'League Gothic', sans-serif;
     color: white;
     background-color: #8277FF;
-    font-size: 21px;
-    border-radius: 15px;
+    font-size: 20px;
     border-color: #8277FF;
 }
 .button--primary:hover{
@@ -45,6 +97,13 @@ button:hover {
 .navbar{
     display: flex;
     justify-content: space-between;
+    padding: 0 2vw;
+}
+
+.navbar__menu {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 .header {
@@ -85,9 +144,14 @@ button:hover {
 }
 
 .searchResponse__user {
-
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 20px;
+    background-color: #F4F3F3;
 }
 
 .searchResponse__container {
     display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
