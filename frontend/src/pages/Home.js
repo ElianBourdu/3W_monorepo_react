@@ -3,6 +3,7 @@ import Header from "../components/Header";
 import '../styles/home.css';
 import AddFruit from "../components/AddFruit";
 import Signup from "../components/Signup";
+import Login from "../components/login";
 
 function Home() {
   return (
@@ -11,6 +12,7 @@ function Home() {
       <Header/>
       <AddFruit/>
       <Signup/>
+      <Login/>
     </>
   );
 }

@@ -11,18 +11,18 @@ const schema = Joi.object({
     password: Joi.string().required()
 });
 
-router.post('/signups', async (req, res) => {
+router.post('/signup', async (req, res) => {
     try {
         const { error } = schema.validate(req.body);
 
         if (error) {
-            return res.status(400).json({ error: error.details[0].message });
+            return res.status(400).send({ error: error.details[0].message });
         }
 
         const existingAgriculteur = await Agriculteur.findOne({ email: req.body.email });
 
         if (existingAgriculteur) {
-            return res.status(400).json({ error: "Cet email est déjà utilisé par un utilisateur ou un agriculteur." });
+            return res.status(400).send({ error: "Cet email est déjà utilisé par un utilisateur ou un agriculteur." });
         }
 
         const agri = new Agriculteur({
@@ -34,10 +34,10 @@ router.post('/signups', async (req, res) => {
         });
 
         await agri.save();
-        res.status(201).json({ message: "Inscription réussie" });
+        res.status(201).send({ message: "Inscription réussie" });
     } catch (error) {
         console.error(error);
-        res.status(500).json({ error: "Une erreur s'est produite lors de l'inscription." });
+        res.status(500).send({ error: "Une erreur s'est produite lors de l'inscription." });
     }
 });
 
