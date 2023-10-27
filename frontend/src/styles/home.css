@@ -83,3 +83,11 @@ button:hover {
 .searchBar input, .searchBar select {
     border: none;
 }
+
+.searchResponse__user {
+
+}
+
+.searchResponse__container {
+    display: flex;
+}

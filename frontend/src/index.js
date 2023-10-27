@@ -8,20 +8,26 @@ import { Provider } from 'react-redux';
 import { store } from './store';
 import Home from "./pages/Home";
 import User from './pages/User';
-
-
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
 
 const router = createBrowserRouter([
   {
-    path:'/',
-    element: <Home />,
-    children: [
-      {
-        path:'user/:id',
-        element: <User />
-      },
-    ],
+    path: '/',
+    element: <Home/>,
   },
+  {
+    path:'user/:id',
+    element: <User />
+  },
+  {
+    path:'signup',
+    element: <Signup />
+  },
+  {
+    path:'login',
+    element: <Login />
+  }
 ]);
 
 
