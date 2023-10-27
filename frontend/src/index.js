@@ -7,11 +7,18 @@ import {
 import { Provider } from 'react-redux';
 import { store } from './store';
 import Home from "./pages/Home";
+import User from './pages/User';
+
+
 
 const router = createBrowserRouter([
   {
     path:'/',
     element: <Home />,
+    children: [
+     { path:'user/:id',
+    element: <User />}
+    ]
   },
 ]);
 
