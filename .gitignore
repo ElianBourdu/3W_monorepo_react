@@ -130,5 +130,8 @@ dist
 .pnp.*
 
 #env
-backend/.env
+backend/.env 
 .idea
+
+#db
+backend/db

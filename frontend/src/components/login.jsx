@@ -22,7 +22,8 @@ const Login = () => {
       .then((response) => {
         if (response && response.data) {
           console.log(response.data);
-          setIsAuthenticated(true); 
+          setIsAuthenticated(true);
+          
         } else {
           console.error('Réponse invalide de la requête.');
         }
