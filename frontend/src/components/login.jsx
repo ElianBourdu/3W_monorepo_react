@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { redirect } from 'react-router-dom';
+
+import { useNavigate} from 'react-router-dom'
 import axios from 'axios';
 
 const Login = () => {
@@ -7,7 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-
+ const navigate = useNavigate()
   const handleEmailChange = (e) => {
     setEmail(e.target.value);
   };
@@ -20,26 +21,26 @@ const Login = () => {
     e.preventDefault();
 
     axios.post('http://localhost:8000/login', { email, password })
-      .then((response) => {
-        if (response && response.data) {
-          console.log(response.data);
-          setIsAuthenticated(true);
-          
-        } else {
-          console.error('Réponse invalide de la requête.');
-        }
-      })
-      .catch((error) => {
-        if (error.response && error.response.data) {
-          setError(error.response.data.error);
-        } else {
-          console.error('Réponse invalide de la requête.');
-        }
-      });
-  };
-  if (isAuthenticated) {
-    return redirect ("user/:id");
-  }
+    .then((response) => {
+      if (response && response.data) {
+    
+        console.log("data=",response.data);
+        setIsAuthenticated(true);
+        
+        
+        navigate(`/user`);
+      } else {
+        console.error('Réponse invalide de la requête.');
+      }
+    })
+    .catch((error) => {
+      if (error.response && error.response.data) {
+        setError(error.response.data.error);
+      } else {
+        console.error('Réponse invalide de la requête.');
+      }
+    });
+};
 
   return (
     <div>
